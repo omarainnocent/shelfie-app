@@ -1,9 +1,20 @@
+import React from 'react'
 import { View } from 'react-native'
 
-const Spacer = ({ width = "100%", height = 40 }) => {
-  return (
-    <View style={{ width, height }} />
-  )
+const Spacer = ({ size, height, width, horizontal = false }) => {
+    const defaultSize = 20
+
+    const finalHeight = height ?? (horizontal ? 0 : (size ?? defaultSize))
+    const finalWidth = width ?? (horizontal ? (size ?? defaultSize) : 0)
+
+    return (
+        <View
+            style={{
+                width: finalWidth,
+                height: finalHeight,
+            }}
+        />
+    )
 }
 
 export default Spacer

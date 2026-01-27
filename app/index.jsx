@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import React from 'react'
 import { Link } from 'expo-router'
 
 
@@ -23,11 +24,21 @@ const Home = () => {
         Reading List App
       </ThemedText>
 
-      <Link href="/about" style={styles.link}>
-        <ThemedText>About Page</ThemedText>
+      <Link href="/login" style={styles.link}>
+        <ThemedText>Login Page</ThemedText>
       </Link>
-      <Link href="/contact" style={styles.link}>
-        <ThemedText>Contact Page</ThemedText>
+      <Link href="/register" style={styles.link}>
+        <ThemedText>Register Page</ThemedText>
+      </Link>
+
+      <Link href="/books" style={styles.link}>
+        <ThemedText>Books Page</ThemedText>
+      </Link>
+      <Link href="/create" style={styles.link}>
+        <ThemedText>Create Page</ThemedText>
+      </Link>
+      <Link href="/profile" style={styles.link}>
+        <ThemedText>Profile Page</ThemedText>
       </Link>
     </ThemedView>
   )
