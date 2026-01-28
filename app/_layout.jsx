@@ -11,6 +11,8 @@ export default function RootLayout() {
   const colorScheme = useColorScheme()
   const theme = Colors[colorScheme] ?? Colors.light
 
+  
+
   return (
     <UserProvider>
     <SafeAreaProvider>

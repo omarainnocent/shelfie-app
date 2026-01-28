@@ -14,16 +14,24 @@ import useUser from '../../hooks/useUser'
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState(null)
 
     const { login } = useUser();
 
     
 
     const handleSubmit = async () => {
+        setError(null);
+        // Simple validation
+        if (!email || !password) {
+            setError('Please enter both email and password.');
+            return;
+        }
+
         try {
             await login(email, password);
         } catch (error) {
-            console.log(error.message);
+            setError(error.message);
         }
 
         setLoading(true);
@@ -73,6 +81,8 @@ const Login = () => {
                 style={styles.btn}>
                 <Text style={{ color: '#f2f2f2', fontWeight: 'bold' }}>Login</Text>
             </ThemedButton>
+            <Spacer />
+            {error && <Text style={styles.error}>{error}</Text>}
 
             <Spacer height={40} />
 

@@ -15,22 +15,18 @@ const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
-    const { user, register } = useUser();
+        const [error, setError] = useState(null)
+
+    const { register } = useUser();
 
     
 
     const handleSubmit = async () => {
-        if (!email || !password) return alert("Please fill in all fields")
-
-        setLoading(true)
+        setError(null);
         try {
             await register(email, password)
-            console.log('Registration successful')
         } catch (error) {
-            console.error('Registration error:', error)
-            alert(error.message || "Failed to register")
-        } finally {
-            setLoading(false)
+            setError(error.message);
         }
     }
 
@@ -71,6 +67,8 @@ const Register = () => {
                         {loading ? 'Registering...' : 'Register'}
                     </Text>
                 </ThemedButton>
+                <Spacer />
+            {error && <Text style={styles.error}>{error}</Text>}
 
                 <Spacer height={40} />
 

@@ -24,29 +24,29 @@ export function UserProvider({ children }) {
     }
 
     async function login(email, password) {
-        try {
-            await account.createEmailSession(email, password);
-            // await checkUser();
-            const response = await account.get();
-            setUser(response);
-        } catch (error) {
-            console.log(error.message);
-        }
+       try {
+        await account.createEmailPasswordSession(email, password)
+        const response = await account.get();
+        setUser(response);
+       }
+         catch (error) {
+        throw Error(error.message)
+       }
        
     }
 
     async function register(email, password) {
-       try {
-        await account.create(ID.unique(), email, password,)
-        await login(email, password);
-        console.log(error.message)
-
-       } catch (error) {
-        console.log(error.message) 
-       }
+      try {
+        await account.create(ID.unique(), email, password)
+        await login(email, password)
+      } catch (error) {
+        throw Error(error.message)
+      }
     }
 
     async function logout() {
+        await account.deleteSession("current");
+        setUser(null);
        
     }
 
