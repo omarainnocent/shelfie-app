@@ -6,6 +6,7 @@ import { useColorScheme } from "react-native"
 import { StatusBar } from "expo-status-bar"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { UserProvider } from "../context/UserContext"
+import { BooksProvider } from "../context/BooksContext"
 
 export default function RootLayout() {
   const colorScheme = useColorScheme()
@@ -15,6 +16,7 @@ export default function RootLayout() {
 
   return (
     <UserProvider>
+      <BooksProvider>
     <SafeAreaProvider>
       <StatusBar style="auto" />
       <Stack
@@ -29,6 +31,7 @@ export default function RootLayout() {
         <Stack.Screen name="(dashboard)" options={{ headerShown: false }} />
       </Stack>
     </SafeAreaProvider>
+    </BooksProvider>
     </UserProvider>
   )
 }

@@ -7,6 +7,7 @@ const UserContext = createContext();
 export function UserProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [authChecked, setAuthChecked] = useState(false);
 
     useEffect(() => {
         checkUser();
@@ -50,8 +51,26 @@ export function UserProvider({ children }) {
        
     }
 
+    async function getInitialUserValue() {
+        try {
+            const response = await account.get();
+            setUser(response);
+
+        } catch (error) {
+            setUser(null);
+        } finally {
+            setAuthChecked(true);
+            
+        }
+    }
+
+    useEffect(() => {
+        getInitialUserValue();
+
+    }, []);
+
     return (
-        <UserContext.Provider value={{ user, loading, login, register, logout, checkUser }}>
+        <UserContext.Provider value={{ user, loading, login, register, logout, checkUser, authChecked}}>
             {children}
         </UserContext.Provider>
     );

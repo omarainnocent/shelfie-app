@@ -10,6 +10,8 @@ import Spacer from '../../components/Spacer'
 import ThemedButton from '../../components/ThemedButton'
 import ThemedTextInput from '../../components/ThemedTextInput'
 import useUser from '../../hooks/useUser'
+import { ActivityIndicator } from 'react-native-web'
+import ThemedLoader from '../../components/ThemedLoader'
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -91,6 +93,7 @@ const Login = () => {
                     Don't have an account? Register here
                 </ThemedText>
             </Link>
+            {/* <ThemedLoader /> */}
         </ThemedView>
     )
 }
