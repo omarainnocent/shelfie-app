@@ -15,18 +15,23 @@ const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
-        const [error, setError] = useState(null)
+    const [error, setError] = useState(null)
 
     const { register } = useUser();
 
-    
+
 
     const handleSubmit = async () => {
         setError(null);
+        setLoading(true);
         try {
-            await register(email, password)
+            await register(email, password);
+            console.log('Registration successful');
         } catch (error) {
-            setError(error.message);
+            console.error('Registration error:', error);
+            setError(error.message || "Failed to register");
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -68,7 +73,7 @@ const Register = () => {
                     </Text>
                 </ThemedButton>
                 <Spacer />
-            {error && <Text style={styles.error}>{error}</Text>}
+                {error && <Text style={styles.error}>{error}</Text>}
 
                 <Spacer height={40} />
 
@@ -103,5 +108,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#6849a7',
         padding: 15,
         borderRadius: 5,
+    },
+    error: {
+        color: '#ff4444',
+        textAlign: 'center',
+        marginTop: 10,
     },
 })

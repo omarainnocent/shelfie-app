@@ -10,8 +10,6 @@ import Spacer from '../../components/Spacer'
 import ThemedButton from '../../components/ThemedButton'
 import ThemedTextInput from '../../components/ThemedTextInput'
 import useUser from '../../hooks/useUser'
-import { ActivityIndicator } from 'react-native-web'
-import ThemedLoader from '../../components/ThemedLoader'
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -20,7 +18,7 @@ const Login = () => {
 
     const { login } = useUser();
 
-    
+
 
     const handleSubmit = async () => {
         setError(null);
@@ -32,19 +30,10 @@ const Login = () => {
 
         try {
             await login(email, password);
-        } catch (error) {
-            setError(error.message);
-        }
-
-        setLoading(true);
-        try {
-            await login(email, password);
             console.log('Login successful');
         } catch (error) {
             console.error('Login error:', error);
-            alert(error.message || "Failed to login");
-        } finally {
-            setLoading(false);
+            setError(error.message || "Failed to login");
         }
     }
 
@@ -123,5 +112,10 @@ const styles = StyleSheet.create({
     },
     pressed: {
         opacity: 0.8,
+    },
+    error: {
+        color: '#ff4444',
+        textAlign: 'center',
+        marginTop: 10,
     },
 })
