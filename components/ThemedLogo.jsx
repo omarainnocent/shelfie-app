@@ -1,18 +1,20 @@
 import React from 'react'
-import { StyleSheet, useColorScheme } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import { StyleSheet, useColorScheme, Image } from 'react-native'
 import { Colors } from '../constants/Colors'
 
-const ThemedLogo = ({ size = 80 }) => {
+const ThemedLogo = ({ width = 150, height = 40 }) => {
     const colorScheme = useColorScheme()
-    const theme = Colors[colorScheme] ?? Colors.light
+    const isDark = colorScheme === 'dark'
+
+    const logoSource = isDark
+        ? require('../assets/image/logo_dark.png')
+        : require('../assets/image/logo_light.png')
 
     return (
-        <Ionicons
-            name="book"
-            size={size}
-            color={Colors.primary}
-            style={styles.logo}
+        <Image
+            source={logoSource}
+            style={[styles.logo, { width, height }]}
+            resizeMode="contain"
         />
     )
 }

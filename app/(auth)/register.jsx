@@ -1,5 +1,6 @@
 import { StyleSheet, Text, Keyboard, TouchableWithoutFeedback, View } from 'react-native'
 import React, { useState } from 'react'
+import { Colors } from '../../constants/Colors'
 
 // themed components
 import ThemedView from '../../components/ThemedView'
@@ -8,6 +9,7 @@ import { Link } from 'expo-router'
 import Spacer from '../../components/Spacer'
 import ThemedButton from '../../components/ThemedButton'
 import ThemedTextInput from '../../components/ThemedTextInput'
+import ThemedLogo from '../../components/ThemedLogo'
 
 import useUser from '../../hooks/useUser'
 
@@ -37,14 +39,19 @@ const Register = () => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <ThemedView style={styles.container}>
-                <Spacer />
+            <ThemedView style={styles.container} safe={true}>
+                <ThemedLogo width={160} height={50} />
+                <Spacer height={20} />
 
                 <ThemedText title style={styles.title}>
-                    Register Account
+                    Join Shelfie
                 </ThemedText>
 
-                <Spacer height={20} />
+                <ThemedText style={styles.subtitle}>
+                    Start tracking your reading progress today
+                </ThemedText>
+
+                <Spacer height={40} />
 
                 <View style={styles.form}>
                     <ThemedTextInput
@@ -101,13 +108,22 @@ const styles = StyleSheet.create({
     },
     title: {
         textAlign: 'center',
-        fontSize: 18,
-        fontWeight: 'bold',
+        fontSize: 28,
+        fontWeight: '900',
+        color: Colors.primary,
+    },
+    subtitle: {
+        fontSize: 16,
+        opacity: 0.6,
+        textAlign: 'center',
+        marginTop: 5,
     },
     btn: {
-        backgroundColor: '#6849a7',
-        padding: 15,
-        borderRadius: 5,
+        backgroundColor: Colors.primary,
+        padding: 18,
+        borderRadius: 8,
+        width: '100%',
+        elevation: 2,
     },
     error: {
         color: '#ff4444',

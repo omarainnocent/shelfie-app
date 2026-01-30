@@ -27,19 +27,19 @@ const Books = () => {
         Your Reading List
       </ThemedText>
       <Spacer />
-      <FlatList 
-      data={books}
-      keyExtractor={(item) => item.$id}
-      contentContainerStyle={styles.list}
-      renderItem={({item}) => (
-        <Pressable onPress={() => router.push(`/books/${item.$id}`)}>
-          <ThemedCard  style={styles.card}>
-            <ThemedText style={styles.title}>{item.title}</ThemedText>
-            <ThemedText>Written by {item.author}</ThemedText>
-          </ThemedCard>
-        </Pressable>
-      )}
-      
+      <FlatList
+        data={books}
+        keyExtractor={(item) => item.$id}
+        contentContainerStyle={styles.list}
+        renderItem={({ item }) => (
+          <Pressable onPress={() => router.push(`/books/${item.$id}`)}>
+            <ThemedCard style={styles.card}>
+              <ThemedText style={styles.title}>{item.title}</ThemedText>
+              <ThemedText>Written by {item.author}</ThemedText>
+            </ThemedCard>
+          </Pressable>
+        )}
+
       />
 
 
@@ -56,14 +56,15 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
   },
   heading: {
-    fontWeight: "bold",
-    fontSize: 18,
+    fontWeight: "900",
+    fontSize: 28,
     textAlign: "center",
+    color: Colors.primary,
   },
   list: {
     marginTop: 40
   },
-   card: {
+  card: {
     width: "90%",
     marginHorizontal: "5%",
     marginVertical: 10,

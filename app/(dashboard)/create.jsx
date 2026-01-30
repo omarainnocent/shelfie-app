@@ -1,6 +1,7 @@
 import { StyleSheet, Keyboard, Text, TouchableWithoutFeedback } from 'react-native'
 import { useState } from 'react'
 import { useRouter } from 'expo-router'
+import { Colors } from '../../constants/Colors'
 
 import Spacer from "../../components/Spacer"
 import ThemedText from "../../components/ThemedText"
@@ -63,16 +64,16 @@ const Create = () => {
           placeholder="Description"
           value={description}
           onChangeText={setDescription}
-          multiline= {true}
+          multiline={true}
         />
         <Spacer />
-        <ThemedButton onPress={handleSubmit} disabled={loading}>
-          <Text style={{ color: '#fff' }}>
+        <ThemedButton onPress={handleSubmit} style={styles.btn} disabled={loading}>
+          <Text style={styles.btnText}>
             {loading ? "Saving..." : "Create Book"}
           </Text>
         </ThemedButton>
-        </ThemedView>
-        </TouchableWithoutFeedback>
+      </ThemedView>
+    </TouchableWithoutFeedback>
   )
 }
 
@@ -86,9 +87,21 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   heading: {
-    fontWeight: "bold",
-    fontSize: 24,
-    marginBottom: 20,
+    fontWeight: "900",
+    fontSize: 28,
+    textAlign: "center",
+    color: Colors.primary,
+  },
+  btn: {
+    width: '100%',
+    padding: 18,
+    borderRadius: 8,
+  },
+  btnText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
   },
   input: {
     marginBottom: 10,

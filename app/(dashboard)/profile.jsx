@@ -1,4 +1,5 @@
 import { StyleSheet, Text } from 'react-native'
+import { Colors } from '../../constants/Colors'
 
 import Spacer from "../../components/Spacer"
 import ThemedText from "../../components/ThemedText"
@@ -21,8 +22,8 @@ const Profile = () => {
       <ThemedText>Time to start reading some books...</ThemedText>
       <Spacer />
 
-      <ThemedButton onPress={logout}>
-        <Text style={{ color: '#f2f2f2', fontWeight: 'bold' }}>Logout</Text>
+      <ThemedButton onPress={logout} style={styles.btn}>
+        <Text style={styles.btnText}>Logout</Text>
       </ThemedButton>
 
     </ThemedView>
@@ -38,8 +39,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heading: {
-    fontWeight: "bold",
-    fontSize: 18,
+    fontWeight: "900",
+    fontSize: 28,
     textAlign: "center",
+    color: Colors.primary,
+  },
+  btn: {
+    paddingHorizontal: 40,
+    paddingVertical: 15,
+    borderRadius: 8,
+  },
+  btnText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 })
